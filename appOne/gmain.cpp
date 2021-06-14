@@ -1,3 +1,6 @@
+#define _カーブ_
+
+#ifdef _三角関数_
 #include"libOne.h"
 void gmain() {
     window(1000, 1000);
@@ -35,3 +38,38 @@ void gmain() {
 
     }
 }
+#endif
+
+#ifdef _カーブ_
+#include"libOne.h"
+void gmain() {
+    window(1000, 1000);
+
+    let x = 0, y = 0, deg = -360;
+    angleMode(DEGREES);
+    clear(224, 225, 204);
+    int stopFlag = 1;
+
+    while (notQuit) {
+        if (isTrigger(KEY_SPACE))stopFlag = -stopFlag;
+        if (stopFlag == 1) deg++;
+        else deg = deg;
+        
+       
+      
+        if (deg > 360) {
+            deg = -360;
+            clear(224, 225, 204);
+        }
+        x = cos(deg)*100;
+        y = sin(deg)*100;
+        mathAxis(380);
+
+        strokeWeight(5);
+        stroke(100, 100, 255);
+        mathPoint(deg, y); 
+        stroke(160, 255, 255);
+        mathPoint(deg, x);
+    }
+}
+#endif
